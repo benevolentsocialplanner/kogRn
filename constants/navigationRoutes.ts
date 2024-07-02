@@ -1,4 +1,8 @@
+
 export const NAVIGATIONROUTES = {
-  home: 'HomeScreen',
-  favorites: 'FavoritesScreen',
+  bottomTabNavigation: 'BottomTabNavigation',
+  homeScreen: 'HomeScreen',
+  favoritesScreen: 'FavoritesScreen',
+  epDetailScreen: 'EpisodeDetailScreen',
+  charDetailScreen: 'CharacterDetailScreen',
 };
