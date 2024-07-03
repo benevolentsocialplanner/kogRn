@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, Text, View, StyleSheet, ScrollView, Image, TouchableOpacity, TextInput } from "react-native";
 import { apiProvider } from "../utils/apiProvider";
 import { EpisodesType } from "../utils/types";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addFavoriteEpisode } from '../utils/store'; 
 import { useNavigation } from '@react-navigation/native';
 import Pagination from "../components/Pagination"; 
 import { NAVIGATIONROUTES } from "../constants/navigationRoutes";
+import Storage from "../utils/storage";
 
 const ITEMS_PER_PAGE = 7;
 
@@ -17,6 +18,9 @@ const HomeScreen = () => {
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const selector = useSelector(state => state.favoriteEpisodesSlice.favoriteEpisodes); 
+
+
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -64,7 +68,7 @@ const HomeScreen = () => {
         {currentItems.map((item, index) => (
           <TouchableOpacity onPress={() => { handleNavigation(item.id) }} key={index} style={styles.itemContainer}>
             <View style={[styles.row, {justifyContent: "space-between"}]}>
-              <Text style={styles.itemText}>{item.name}</Text>
+              <Text style={[styles.itemText, {maxWidth: 200}]}>{item.name}</Text>
               <View style={[styles.row, {alignItems: "center", gap: 5}]}>
                 <Text style={styles.itemText}>{item.episode}</Text>
                 <TouchableOpacity onPress={() => { handleAddFavorite(item) }}>

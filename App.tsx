@@ -4,10 +4,11 @@ import store from './utils/store';
 import NavigationStack from './navigation/NavigationContainer';
 
 function App(): React.JSX.Element {
+
   return (
-  <Provider store={store}>
-    <NavigationStack />
-  </Provider>
+    <Provider store={store}>
+      <NavigationStack />
+    </Provider>
   );
 }
 

@@ -1,8 +1,9 @@
 import { APIROUTES } from "../constants/apiRoutes";
 import axios from "axios";
-import { CharacterType, EpisodesType } from "./types";
+import { EpisodesType } from "./types";
 
 export const apiProvider = {
+
   getEpisodes: async (): Promise<EpisodesType | unknown> => {
     try {
       const res = await axios.get(APIROUTES.getEpisodes);
@@ -12,9 +13,9 @@ export const apiProvider = {
       return error;
     }
   },
+
   getEpisodeDetail: async (id: number): Promise<unknown> => {
     try {
-      console.log(2)
       const res = await axios.get(APIROUTES.getEpisodeById(id));
       return res.data;
     } catch (error) {
@@ -22,6 +23,7 @@ export const apiProvider = {
       return error;
     }
   },
+
   getCharacters: async (ids: Array<String>): Promise<unknown> => {
     try {
       let characters = [];
@@ -34,5 +36,16 @@ export const apiProvider = {
       console.error(error, "err in getCharacters")
       return error;
     }
-  }
+  },
+
+  getCharacterDetail: async (id: number): Promise<unknown> => {
+    try {
+      const res = await axios.get(APIROUTES.getCharacterById(id));
+      return res.data;
+    } catch (error) {
+      console.error(error, "err in getCharacterDetail")
+      return error;
+    }
+  },
+
 };
